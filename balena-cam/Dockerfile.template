@@ -45,4 +45,4 @@ RUN unzip ngrok-stable-linux-arm.zip
 
 
 CMD ["python3", "/usr/src/app/server.py"]
-CMD ["runit-bootstrap", "config/runit-conf.toml"]
+CMD ["runit", "config/runit-conf.toml"]

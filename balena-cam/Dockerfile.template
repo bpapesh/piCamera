@@ -46,6 +46,6 @@ RUN pip3 install av
 RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
 RUN unzip ngrok-stable-linux-arm.zip
 
-
-CMD ngrok http -auth="pappy:$NGROK_WEB_PW" 80
+CMD ./ngrok authtoken $NGROK_KEY
+CMD ./ngrok http -auth="pappy:$NGROK_WEB_PW" 80
 CMD ["python3", "/usr/src/app/server.py"]

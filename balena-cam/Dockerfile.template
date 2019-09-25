@@ -2,6 +2,11 @@ FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch
 
 RUN echo "deb http://deb.debian.org/debian jessie main" >> /etc/apt/sources.list
 # Install dependencies
+ENV RUNIT_CONF_TGZ runit-conf-linux-amd64.tgz
+ENV RUNIT_CONF_RELEASE v0.1.8
+RUN wget -q https://github.com/jarrodsinclair/runit-conf/releases/download/${RUNIT_CONF_RELEASE}/${RUNIT_CONF_TGZ} && \
+    tar -xzf ${RUNIT_CONF_TGZ} --strip-components=1 -C /builder/usr/local/bin && \
+    rm -rf ${RUNIT_CONF_TGZ}
 RUN apt-get update && \
   apt-get install -yq \
     gstreamer-1.0 \
@@ -44,5 +49,5 @@ RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
 RUN unzip ngrok-stable-linux-arm.zip
 
 
-CMD ["python3", "/usr/src/app/server.py"]
+
 CMD ["runit", "config/runit-conf.toml"]

@@ -50,8 +50,9 @@ RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
 RUN unzip ngrok-stable-linux-arm.zip
 RUN mkdir -p /builder/usr/local/bin
 RUN wget -q https://github.com/jarrodsinclair/runit-conf/releases/download/${RUNIT_CONF_RELEASE}/${RUNIT_CONF_TGZ} && \
-    tar -xzf ${RUNIT_CONF_TGZ} && \
+    tar -xzf ${RUNIT_CONF_TGZ} --strip-components=1 -C /builder/usr/local/bin && \
     rm -rf ${RUNIT_CONF_TGZ}
+COPY --from=builder_runit_conf /builder/ /
 
 
 WORKDIR /usr/src/app

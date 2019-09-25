@@ -27,6 +27,8 @@ RUN apt-get update && \
     libavcodec-dev \
     unzip \
     wget \
+    runit \
+    htop \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
@@ -43,3 +45,4 @@ RUN unzip ngrok-stable-linux-arm.zip
 
 
 CMD ["python3", "/usr/src/app/server.py"]
+CMD ["runit-bootstrap", "config/runit-conf.toml"]

@@ -1,0 +1,8 @@
+[runit]
+directory = "/usr/src/runit"
+
+[[service]]
+name = "ngrok_web"
+conditional = "NGROK_WEB"
+boot = "envsubst < config/ngrok_web.yml > config/ngrok_web_.yml"
+run = "ngrok start -config config/ngrok_web_.yml web"

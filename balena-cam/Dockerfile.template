@@ -46,7 +46,7 @@ RUN pip3 install av
 RUN wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
 RUN unzip ngrok-stable-linux-arm.zip
 RUN wget -q https://github.com/jarrodsinclair/runit-conf/releases/download/${RUNIT_CONF_RELEASE}/${RUNIT_CONF_TGZ} && \
-    tar -xzf ${RUNIT_CONF_TGZ} --strip-components=1 -C /builder/usr/local/bin && \
+    tar -xzf ${RUNIT_CONF_TGZ} && \
     rm -rf ${RUNIT_CONF_TGZ}
 
 

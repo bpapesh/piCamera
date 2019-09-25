@@ -52,7 +52,7 @@ RUN mkdir -p /builder/usr/local/bin
 RUN wget -q https://github.com/jarrodsinclair/runit-conf/releases/download/${RUNIT_CONF_RELEASE}/${RUNIT_CONF_TGZ} && \
     tar -xzf ${RUNIT_CONF_TGZ} && \
     rm -rf ${RUNIT_CONF_TGZ}
-COPY --from=builder_runit_conf /builder/ /
+
 
 WORKDIR /usr/src/app
 
